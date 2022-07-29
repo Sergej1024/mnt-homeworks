@@ -197,8 +197,8 @@ Confirm New Vault password:
 Encryption successful
 [sergej@Fedora playbook]$ 
 ```
-[](https://github.com/Sergej1024/mnt-homeworks/tree/MNT-13/08-ansible-01-base/image/deb-vault.png)
-[](https://github.com/Sergej1024/mnt-homeworks/tree/MNT-13/08-ansible-01-base/image/el-vault.png)
+![](https://github.com/Sergej1024/mnt-homeworks/tree/MNT-13/08-ansible-01-base/image/deb-vault.png)
+![](https://github.com/Sergej1024/mnt-homeworks/tree/MNT-13/08-ansible-01-base/image/el-vault.png)
 
 8. Запустите playbook на окружении `prod.yml`. При запуске `ansible` должен запросить у вас пароль. Убедитесь в работоспособности.
 
