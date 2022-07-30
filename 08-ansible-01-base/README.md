@@ -203,7 +203,7 @@ Encryption successful
 8. Запустите playbook на окружении `prod.yml`. При запуске `ansible` должен запросить у вас пароль. Убедитесь в работоспособности.
 
 ```shell
-sergej@Fedora playbook]$ ansible-playbook -i inventory/prod.yml site.yml --ask-vault-password
+[sergej@Fedora playbook]$ ansible-playbook -i inventory/prod.yml site.yml --ask-vault-password
 Vault password: 
 
 PLAY [Prepare deb host] *****************************************************************************************************************************************************************************
@@ -281,17 +281,181 @@ winrm                          Run tasks over Microsoft's WinRM
 
 10. В `prod.yml` добавьте новую группу хостов с именем  `local`, в ней разместите localhost с необходимым типом подключения.
 
-
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/08-ansible-01-base/image/prod-local.png)
 11. Запустите playbook на окружении `prod.yml`. При запуске `ansible` должен запросить у вас пароль. Убедитесь что факты `some_fact` для каждого из хостов определены из верных `group_vars`.
+
+```shell
+[sergej@Fedora playbook]$ ansible-playbook -i inventory/prod.yml site.yml --ask-vault-password
+Vault password: 
+
+PLAY [Prepare deb host] **************************************************************************************************************************************************************
+
+TASK [Install Python] ****************************************************************************************************************************************************************
+changed: [ubuntu]
+
+PLAY [Print os facts] ****************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************************************************
+ok: [localhost]
+ok: [ubuntu]
+ok: [centos7]
+
+TASK [Print OS] **********************************************************************************************************************************************************************
+ok: [centos7] => {
+    "msg": "CentOS"
+}
+ok: [ubuntu] => {
+    "msg": "Ubuntu"
+}
+ok: [localhost] => {
+    "msg": "Fedora"
+}
+
+TASK [Print fact] ********************************************************************************************************************************************************************
+ok: [centos7] => {
+    "msg": "el default fact"
+}
+ok: [ubuntu] => {
+    "msg": "deb default fact"
+}
+ok: [localhost] => {
+    "msg": "all default fact"
+}
+
+PLAY RECAP ***************************************************************************************************************************************************************************
+centos7                    : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+ubuntu                     : ok=4    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0  
+```
+
 12. Заполните `README.md` ответами на вопросы. Сделайте `git push` в ветку `master`. В ответе отправьте ссылку на ваш открытый репозиторий с изменённым `playbook` и заполненным `README.md`.
+
+[Ссылка на playbook]:(https://github.com/Sergej1024/mnt)
 
 ## Необязательная часть
 
 1. При помощи `ansible-vault` расшифруйте все зашифрованные файлы с переменными.
+
+```shell
+[sergej@Fedora playbook]$ ansible-vault decrypt group_vars/deb/examp.yml 
+Vault password: 
+Decryption successful
+[sergej@Fedora playbook]$ ansible-vault decrypt group_vars/el/examp.yml 
+Vault password: 
+Decryption successful
+[sergej@Fedora playbook]$
+```
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/08-ansible-01-base/image/deb_decript.png)
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/08-ansible-01-base/image/el-decript.png)
+
+
 2. Зашифруйте отдельное значение `PaSSw0rd` для переменной `some_fact` паролем `netology`. Добавьте полученное значение в `group_vars/all/exmp.yml`.
+
+```shell
+[sergej@Fedora playbook]$ ansible-vault encrypt_string
+New Vault password: 
+Confirm New Vault password: 
+Reading plaintext input from stdin. (ctrl-d to end input, twice if your content does not already have a newline)
+PaSSw0rd  
+Encryption successful
+!vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          37396633356335636534633638366634613138383738666630623330316565656134366663346430
+          6162343062316165643662393730396631366333623865610a343963363338633461656338333863
+          30333364336239666137633761363737616537623666333030373666303061386437303463376663
+          6165333033313835370a346236646438653738396361303436323865383333366430643761626663
+          6332
+[sergej@Fedora playbook]$ 
+```
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/08-ansible-01-base/image/enc_str.png)
+
 3. Запустите `playbook`, убедитесь, что для нужных хостов применился новый `fact`.
-4. Добавьте новую группу хостов `fedora`, самостоятельно придумайте для неё переменную. В качестве образа можно использовать [этот](https://hub.docker.com/r/pycontribs/fedora).
+
+```shell
+TASK [Print vault_key] ********************************************************************************************************************************************************************
+ok: [centos7] => {
+    "msg": "PaSSw0rd"
+}
+ok: [ubuntu] => {
+    "msg": "PaSSw0rd"
+}
+ok: [localhost] => {
+    "msg": "PaSSw0rd"
+}
+```
+
+4. Добавьте новую группу хостов `fedora`, самостоятельно придумайте для неё переменную. В качестве образа можно использовать [этот](latest).
+
+```shell
+[sergej@Fedora playbook]$ ansible-playbook -i inventory/prod.yml site.yml --ask-vault-password
+Vault password: 
+
+PLAY [Prepare deb host] **************************************************************************************************************************************************************
+
+TASK [Install Python] ****************************************************************************************************************************************************************
+changed: [ubuntu]
+
+PLAY [Print os facts] ****************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ***************************************************************************************************************************************************************
+ok: [localhost]
+ok: [fedora]
+ok: [ubuntu]
+ok: [centos7]
+
+TASK [Print OS] **********************************************************************************************************************************************************************
+ok: [ubuntu] => {
+    "msg": "Ubuntu"
+}
+ok: [centos7] => {
+    "msg": "CentOS"
+}
+ok: [localhost] => {
+    "msg": "Fedora"
+}
+ok: [fedora] => {
+    "msg": "Fedora"
+}
+
+TASK [Print fact] ********************************************************************************************************************************************************************
+ok: [centos7] => {
+    "msg": "el default fact"
+}
+ok: [ubuntu] => {
+    "msg": "deb default fact"
+}
+ok: [localhost] => {
+    "msg": "all default fact"
+}
+ok: [fedora] => {
+    "msg": "Fedora the best"
+}
+
+TASK [Print vault_key] ***************************************************************************************************************************************************************
+ok: [centos7] => {
+    "msg": "PaSSw0rd"
+}
+ok: [ubuntu] => {
+    "msg": "PaSSw0rd"
+}
+ok: [localhost] => {
+    "msg": "PaSSw0rd"
+}
+ok: [fedora] => {
+    "msg": "PaSSw0rd"
+}
+
+PLAY RECAP ***************************************************************************************************************************************************************************
+centos7                    : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+fedora                     : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+localhost                  : ok=4    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+ubuntu                     : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+[sergej@Fedora playbook]$ 
+```
+
 5. Напишите скрипт на bash: автоматизируйте поднятие необходимых контейнеров, запуск ansible-playbook и остановку контейнеров.
+
 6. Все изменения должны быть зафиксированы и отправлены в вашей личный репозиторий.
 
 
