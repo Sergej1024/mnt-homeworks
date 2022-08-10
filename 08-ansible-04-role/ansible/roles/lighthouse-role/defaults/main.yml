@@ -1,0 +1,4 @@
+---
+# defaults file for Lighthouse-role
+lighthouse_dest: /usr/share/nginx/lighthouse
+lighthouse_url: https://github.com/VKCOM/lighthouse.git
