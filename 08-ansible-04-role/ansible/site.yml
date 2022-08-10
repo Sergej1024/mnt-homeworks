@@ -14,41 +14,6 @@
 - name: Install lighthouse
   hosts: lighthouse
   remote_user: centos
-  handlers:
-    - name: Nginx reload
-      become: true
-      ansible.builtin.service:
-        name: nginx
-        state: restarted
-  pre_tasks:
-    - name: Install git
-      become: true
-      ansible.builtin.yum:
-        name: git
-        state: present
-    - name: Install EPEL
-      become: true
-      ansible.builtin.yum:
-        name:
-          - epel-release
-        state: present
-        update_cache: true
-    - name: Install nginx
-      become: true
-      ansible.builtin.yum:
-        name: nginx
-        state: present
-    - name: Apply nginx config
-      become: true
-      ansible.builtin.template:
-        src: nginx.conf.j2
-        dest: /etc/nginx/nginx.conf
-        mode: 0644
-      notify: Nginx reload
-  tasks:
-    - name: Clone repository
-      become: true
-      ansible.builtin.git:
-        repo: "{{ lighthouse_url }}"
-        dest: "{{ lighthouse_dest }}"
-        version: master
+  roles:
+    - lighthouse-role
+   
