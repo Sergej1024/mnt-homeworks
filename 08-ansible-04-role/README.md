@@ -79,4 +79,5 @@ sergej@fedora:~/GIT_SORE $ ansible-galaxy role init Vector-role
 11. В ответ приведите ссылки на оба репозитория с roles и одну ссылку на репозиторий с playbook.
 
 [Ссылка на Vector-role](https://github.com/Sergej1024/Vector-role)
+
 [Ссылка на Lighthouse-role](https://github.com/Sergej1024/Lighthouse-role)
