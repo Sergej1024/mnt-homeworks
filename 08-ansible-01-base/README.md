@@ -282,6 +282,7 @@ winrm                          Run tasks over Microsoft's WinRM
 10. В `prod.yml` добавьте новую группу хостов с именем  `local`, в ней разместите localhost с необходимым типом подключения.
 
 ![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/08-ansible-01-base/image/prod-local.png)
+
 11. Запустите playbook на окружении `prod.yml`. При запуске `ansible` должен запросить у вас пароль. Убедитесь что факты `some_fact` для каждого из хостов определены из верных `group_vars`.
 
 ```shell
@@ -330,7 +331,7 @@ ubuntu                     : ok=4    changed=1    unreachable=0    failed=0    s
 
 12. Заполните `README.md` ответами на вопросы. Сделайте `git push` в ветку `master`. В ответе отправьте ссылку на ваш открытый репозиторий с изменённым `playbook` и заполненным `README.md`.
 
-[Ссылка на playbook]:(https://github.com/Sergej1024/mnt)
+[Ссылка на playbook](https://github.com/Sergej1024/mnt)
 
 ## Необязательная часть
 
