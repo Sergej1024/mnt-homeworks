@@ -25,12 +25,14 @@
 sergej@fedora:~/GIT_SORE/mnt-homeworks/08-ansible-04-role/ansible [±|MNT-13 → origin ✓|] $ ansible-galaxy install -r requirements.yml -p roles
 ```
 ![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/08-ansible-04-role/image/clickhouse-role.png)
+
 3. Создать новый каталог с ролью при помощи `ansible-galaxy role init vector-role`.
 
 ```bash
 sergej@fedora:~/GIT_SORE $ ansible-galaxy role init Vector-role
 ```
 ![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/08-ansible-04-role/image/Vector-role.png)
+
 4. На основе tasks из старого playbook заполните новую role. Разнесите переменные между `vars` и `default`. 
 5. Перенести нужные шаблоны конфигов в `templates`.
 6. Описать в `README.md` обе роли и их параметры.
