@@ -15,7 +15,7 @@
 6. On test -> On fix, Done
 7. Done -> Closed, Open
 
-![]()
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-01-intro/image/Process_bags.png)
 
 Остальные задачи должны проходить по упрощённому workflow:
 1. Open -> On develop
@@ -24,15 +24,15 @@
 4. On test -> On develop, Done
 5. Done -> Closed, Open
 
-![]()
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-01-intro/image/Process_task.png)
 
-![]()
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-01-intro/image/Workflows.png)
 
 Создать задачу с типом bug, попытаться провести его по всему workflow до Done. Создать задачу с типом epic, к ней привязать несколько задач с типом task, провести их по всему workflow до Done. При проведении обеих задач по статусам использовать kanban. Вернуть задачи в статус Open.
 Перейти в scrum, запланировать новый спринт, состоящий из задач эпика и одного бага, стартовать спринт, провести задачи до состояния Closed. Закрыть спринт.
 
 Если всё отработало в рамках ожидания - выгрузить схемы workflow для импорта в XML. Файлы с workflow приложить к решению задания.
 
-[Process_bags]()
+[Process_bags](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-01-intro/Process_bags.xml)
 
-[Process_task]()
+[Process_task](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-01-intro/Process_task.xml)
