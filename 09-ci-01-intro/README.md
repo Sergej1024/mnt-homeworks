@@ -29,7 +29,12 @@
 ![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-01-intro/image/Workflows.png)
 
 Создать задачу с типом bug, попытаться провести его по всему workflow до Done. Создать задачу с типом epic, к ней привязать несколько задач с типом task, провести их по всему workflow до Done. При проведении обеих задач по статусам использовать kanban. Вернуть задачи в статус Open.
+
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-01-intro/image/Issues.png)
+
 Перейти в scrum, запланировать новый спринт, состоящий из задач эпика и одного бага, стартовать спринт, провести задачи до состояния Closed. Закрыть спринт.
+
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-01-intro/image/Sprint.png)
 
 Если всё отработало в рамках ожидания - выгрузить схемы workflow для импорта в XML. Файлы с workflow приложить к решению задания.
 
