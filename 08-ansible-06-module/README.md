@@ -243,7 +243,7 @@ def run_module():
     fullname = os.path.join(module.params['path'], module.params['filename'])
 
     if os.path.isfile(fullname) and open(fullname, "r").read() == module.params['content']:
-        module.exit_json(changed=False, **result)
+        module.exit_json(**result)
     else:
         try:
             with open(fullname, "w") as f:
@@ -251,7 +251,7 @@ def run_module():
         except IOError as e:
             module.fail_json(msg=f"ERROR: {e.strerror}")
 
-    module.exit_json(changed=True, **result)
+    module.exit_json(**result)
 
 
 def main():
@@ -263,8 +263,51 @@ if __name__ == '__main__':
 ```
 
 4. Проверьте module на исполняемость локально.
+
+```shell
+user@home 10:45:07 ~/git_store/my_own_collection/ansible |devel ?:3 ✗| →  python -m ansible.modules.my_own_module test_file.json 
+
+{"changed": false, "msg": "File created", "invocation": {"module_args": {"path": "/home/user", "content": "hello world", "filename": "file"}}}
+```
+
 5. Напишите single task playbook и используйте module в нём.
+
+```shell
+user@home 10:53:38 ~/git_store/my_own_collection/ansible |devel ?:4 ✗| →  ansible-playbook site.yml 
+
+PLAY [localhost] ************************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [Test with a file create] **********************************************************************************************************************************************************************
+ok: [localhost]
+
+PLAY RECAP ******************************************************************************************************************************************************************************************
+localhost                  : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+user@home 10:54:37 ~/git_store/my_own_collection/ansible |devel ?:4 ✗| →  
+```
+
 6. Проверьте через playbook на идемпотентность.
+
+```shell
+user@home 10:54:37 ~/git_store/my_own_collection/ansible |devel ?:4 ✗| →  ansible-playbook site.yml 
+
+PLAY [localhost] ************************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ******************************************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [Test with a file create] **********************************************************************************************************************************************************************
+ok: [localhost]
+
+PLAY RECAP ******************************************************************************************************************************************************************************************
+localhost                  : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+
+user@home 10:55:46 ~/git_store/my_own_collection/ansible |devel ?:4 ✗| →  
+```
+
 7. Выйдите из виртуального окружения.
 8. Инициализируйте новую collection: `ansible-galaxy collection init my_own_namespace.yandex_cloud_elk`
 9. В данную collection перенесите свой module в соответствующую директорию.
