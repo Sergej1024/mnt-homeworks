@@ -1,6 +1,7 @@
 ---
 - name: Get OpenJDK installed
   hosts: sonarqube
+  remote_user: centos
   pre_tasks:
     - name: install unzip
       become: true
@@ -43,6 +44,7 @@
 
 - name: Get PostgreSQL installed
   hosts: postgres
+  remote_user: centos
   become: true
   tasks:
     - name: Change repo file
@@ -101,6 +103,7 @@
 
 - name: Prepare Sonar host
   hosts: sonarqube
+  remote_user: centos
   become: true
   tasks:
     - name: Create group in system
@@ -138,6 +141,7 @@
 
 - name: Get Sonarqube installed
   hosts: sonarqube
+  remote_user: centos
   vars: 
     ansible_user: "{{ sonarqube_db_user }}"
   tasks:
@@ -224,6 +228,7 @@
         timeout: 300
 - name: Get Nexus installed
   hosts: nexus
+  remote_user: centos
   pre_tasks:
     - name: Create Nexus group
       become: true
