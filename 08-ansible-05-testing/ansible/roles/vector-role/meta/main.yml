@@ -1,5 +1,6 @@
 galaxy_info:
-  role_name: vector-role
+  role_name: my_role
+  namespace: my_namespace
   author: Sergej
   description: Role for installation and managing Vector
   company: your company (optional)
