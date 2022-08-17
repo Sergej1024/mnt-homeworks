@@ -200,12 +200,12 @@ author:
 EXAMPLES = r'''
 # Create file
 - name: Test with a file create
-  my_own_collection.my_own_module:
+  my_own_collection.my_own_modul.my_own_module::
     path: ./
     content: test content
 # Create file with filename new_filename
 - name: Test with a file create
-  my_own_collection.my_own_module:
+  my_own_collection.my_own_modul.my_own_module::
     path: /home/ansible
     content: test
     filename: test_file
@@ -320,6 +320,8 @@ user@home 10:55:46 ~/git_store/my_own_collection/ansible |devel ?:4 ✗| →
 16. Запустите playbook, убедитесь, что он работает.
 17. В ответ необходимо прислать ссылку на репозиторий с collection
 
+[Репозиторий с коллекцией](https://github.com/Sergej1024/my_own_collection)
+
 ## Необязательная часть
 
 1. Реализуйте свой собственный модуль для создания хостов в Yandex Cloud.
@@ -329,10 +331,3 @@ user@home 10:55:46 ~/git_store/my_own_collection/ansible |devel ?:4 ✗| →
 5. Измените playbook так, чтобы он умел создавать инфраструктуру под inventory, а после устанавливал весь ваш стек Observability на нужные хосты и настраивал его.
 6. В итоге, ваша коллекция обязательно должна содержать: clickhouse-role(если есть своя), lighthouse-role, vector-role, два модуля: my_own_module и модуль управления Yandex Cloud хостами и playbook, который демонстрирует создание Observability стека.
 
----
-
-### Как оформить ДЗ?
-
-Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
-
----
