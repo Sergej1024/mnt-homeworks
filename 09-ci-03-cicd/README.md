@@ -25,9 +25,9 @@
 8. Запускаем анализатор повторно - проверяем, что QG пройдены успешно
 9. Делаем скриншот успешного прохождения анализа, прикладываем к решению ДЗ
 
-![]()
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-03-cicd/img/sonar_bug.png)
 
-![]()
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-03-cicd/img/sonarqube.png)
 
 ## Знакомство с Nexus
 
@@ -42,9 +42,9 @@
 2. В него же загружаем такой же артефакт, но с version: 8_102
 3. Проверяем, что все файлы загрузились успешно
 
-![]()
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-03-cicd/img/nexus.png)
 
-4. В ответе присылаем файл [`maven-metadata.xml`]() для этого артефекта 
+4. В ответе присылаем файл [`maven-metadata.xml`](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-03-cicd/maven-metadata.xml) для этого артефекта 
 
 ### Знакомство с Maven
 
@@ -58,12 +58,12 @@
 
 ### Основная часть
 
-1. Меняем в [`pom.xml`]() блок с зависимостями под наш артефакт из первого пункта задания для Nexus (java с версией 8_282)
+1. Меняем в [`pom.xml`](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-03-cicd/mvn/pom.xml) блок с зависимостями под наш артефакт из первого пункта задания для Nexus (java с версией 8_282)
 2. Запускаем команду `mvn package` в директории с `pom.xml`, ожидаем успешного окончания
 3. Проверяем директорию `~/.m2/repository/`, находим наш артефакт
 
-![]()
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-03-cicd/img/artefact.png)
 
-4. В ответе присылаем исправленный файл [`pom.xml`]()
+4. В ответе присылаем исправленный файл [`pom.xml`](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-03-cicd/mvn/pom.xml)
 
 
