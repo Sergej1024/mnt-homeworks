@@ -20,7 +20,7 @@ vector_config:
         - demo_logs
         - in
       database: logs
-      endpoint: http://localhost:8123
+      endpoint: http://{{ clickhouse_01_ext_ip }}:8123
       table: alerts
       compression: gzip
       healthcheck: true

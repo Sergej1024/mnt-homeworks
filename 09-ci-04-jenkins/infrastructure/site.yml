@@ -1,6 +1,7 @@
 ---
 - name: Preapre all hosts
   hosts: all
+  remote_user: centos
   tasks:
     - name: Create group
       become: true
@@ -21,6 +22,7 @@
 
 - name: Get Jenkins master installed
   hosts: jenkins_masters
+  remote_user: centos
   tasks:
     - name: Get repo Jenkins
       become: true
@@ -64,6 +66,7 @@
         enabled: true
       when: jenkins_installed is changed
 - name: Prepare jenkins agent
+  remote_user: centos
   hosts: jenkins_agents
   become: true
   become_user: "{{ jenkins_user_name }}"
