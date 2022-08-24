@@ -324,9 +324,9 @@ user@home 10:55:46 ~/git_store/my_own_collection/ansible |devel ?:4 ✗| →
 
 ## Исправления
 
-![]()
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/08-ansible-06-module/img/modul1.png)
 
-![]()
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/08-ansible-06-module/img/modul2.png)
 Проверил на чужом репозитории найденом в интернете, тем способом что вы проверяите оно не работет, но почему то работает когда скачиваешь файл и потом локально его ставишь. Так как показывали в лекции и написано выше в пунктах выполнения.
 
 ## Необязательная часть
