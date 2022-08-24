@@ -1,0 +1,4 @@
+---
+clickhouse_01_ext_ip: "127.0.0.1"
+vector_config_dir: "/etc/vector"
+#ansible_user: ansible

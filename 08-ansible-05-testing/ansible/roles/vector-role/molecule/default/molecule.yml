@@ -14,6 +14,7 @@ platforms:
       SUDO_GROUP: wheel
       DEPLOY_GROUP: deployer
       container: docker
+      
     #command: "/sbin/init"
   # - name: centos7
   #   image: quay.io/centos/centos:7
@@ -24,5 +25,10 @@ provisioner:
   name: ansible
   env:
     ANSIBLE_VERBOSITY: 0
+  inventory:
+    links:
+      hosts: ../resources/inventory/hosts.yml
+      group_vars: ../resources/inventory/group_vars/
+      host_vars: ../resources/inventory/host_vars/
 verifier:
   name: ansible
