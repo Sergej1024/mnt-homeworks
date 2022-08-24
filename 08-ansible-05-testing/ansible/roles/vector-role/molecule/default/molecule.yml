@@ -6,8 +6,14 @@ driver:
 platforms:
   - name: centos8
     image: quay.io/centos/centos:stream8 #docker.io/pycontribs/centos:8
-    pre_build_image: true
+    dockerfile: ../resources/Dockerfile.j2
+    #pre_build_image: true
     privileged: true
+    env:
+      ANSIBLE_USER: ansible
+      SUDO_GROUP: wheel
+      DEPLOY_GROUP: deployer
+      container: docker
     #command: "/sbin/init"
   # - name: centos7
   #   image: quay.io/centos/centos:7
