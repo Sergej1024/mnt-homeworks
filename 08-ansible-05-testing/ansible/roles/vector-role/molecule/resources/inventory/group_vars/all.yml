@@ -2,3 +2,24 @@
 clickhouse_01_ext_ip: "127.0.0.1"
 vector_config_dir: "/etc/vector"
 #ansible_user: ansible
+
+vector_config:
+
+  sources:
+    demo_logs:
+      type: demo_logs
+      format: syslog
+    in:
+      type: stdin
+  sinks:
+    to_clickhouse:
+      type: clickhouse
+      inputs:
+        - demo_logs
+        - in
+      database: logs
+      endpoint: http://{{ clickhouse_01_ext_ip }}:8123
+      table: alerts
+      compression: gzip
+      healthcheck: true
+      skip_unknown_fields: true 
