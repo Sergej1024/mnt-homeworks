@@ -8,8 +8,8 @@ driver:
 #   yamllint .
 #   ansible-lint
 platforms:
-  # - name: centos8
-  #   image: quay.io/centos/centos:stream8
+    - name: centos8
+      image: aragast/netology:latest #quay.io/centos/centos:stream8
   #   #dockerfile: ../resources/Dockerfile.j2
   #   #pre_build_image: true
   #   privileged: true
@@ -19,11 +19,11 @@ platforms:
   #     DEPLOY_GROUP: deployer
   #     container: docker 
     #command: "/sbin/init"
-  - name: centos8
-    image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos8}-ansible:latest" #${MOLECULE_DOCKER_IMAGE:-'geerlingguy/docker-centos8-ansible:latest'}
-    command: ${MOLECULE_DOCKER_COMMAND:-""}
-    pre_build_image: true
-    privileged: true
+  # - name: centos8
+  #   image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos8}-ansible:latest" #${MOLECULE_DOCKER_IMAGE:-'geerlingguy/docker-centos8-ansible:latest'}
+  #    command: ${MOLECULE_DOCKER_COMMAND:-""}
+  #    pre_build_image: true
+      privileged: true
       # env:
       #   ANSIBLE_USER: ansible
       #   SUDO_GROUP: wheel
