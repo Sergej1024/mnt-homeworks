@@ -105,10 +105,6 @@ user@home 08:58:22 ~/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles
 
 2. Перейдите в каталог с ролью vector-role и создайте сценарий тестирования по умолчанию при помощи `molecule init scenario --driver-name docker`.
 
-```shell
-
-```
-
 3. Добавьте несколько разных дистрибутивов (centos:8, ubuntu:latest) для инстансов и протестируйте роль, исправьте найденные ошибки, если они есть.
 
 ```shell
@@ -256,6 +252,8 @@ user@home 08:50:43 ~/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles
 ```
 
 5. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
+
+
 
 ### Tox
 
