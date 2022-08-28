@@ -3,33 +3,19 @@ dependency:
   name: galaxy
 driver:
   name: docker
-# lint: |
-#   set -e
-#   yamllint .
-#   ansible-lint
 platforms:
-    # - name: centos8
-    #   image: quay.io/centos/centos:stream8
-  #   dockerfile: ../resources/Dockerfile.j2
-  #   #pre_build_image: true
-  #   privileged: true
-  #   env:
-  #     ANSIBLE_USER: ansible
-  #     SUDO_GROUP: wheel
-  #     DEPLOY_GROUP: deployer
-  #     container: docker 
-    #command: "/sbin/init"
-  - name: centos7
-    image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos7}-ansible:latest" #${MOLECULE_DOCKER_IMAGE:-'geerlingguy/docker-centos8-ansible:latest'}
+  - name: centos8
+    image: "geerlingguy/docker-${MOLECULE_DISTRO:-centos8}-ansible:latest" #${MOLECULE_DOCKER_IMAGE:-'geerlingguy/docker-centos8-ansible:latest'} quay.io/centos/centos:stream8
+    dockerfile: ../resources/Dockerfile.j2
     command: ${MOLECULE_DOCKER_COMMAND:-""}
-    #pre_build_image: true
+    pre_build_image: true
     privileged: true
-      # env:
-      #   ANSIBLE_USER: ansible
-      #   SUDO_GROUP: wheel
-      #   DEPLOY_GROUP: deployer
-      #   container: docker
-      #command: /sbin/init
+    env:
+      ANSIBLE_USER: ansible
+      SUDO_GROUP: wheel
+      DEPLOY_GROUP: deployer
+      container: docker
+    #command: /sbin/init
 provisioner:
   name: ansible
   env:
@@ -38,10 +24,6 @@ provisioner:
     links:
       hosts: ../resources/inventory/hosts.yml
       group_vars: ../resources/inventory/group_vars/
-      #host_vars: ../resources/inventory/host_vars/
-    host_vars:
-      # setting for the platform instance named 'centos8'
-      centos8:
-        ansible_user: ansible
+      host_vars: ../resources/inventory/host_vars/
 verifier:
   name: ansible

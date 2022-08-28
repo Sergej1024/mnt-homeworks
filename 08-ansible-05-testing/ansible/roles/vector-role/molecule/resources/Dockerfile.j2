@@ -1,26 +1,54 @@
 # Molecule managed
 
-ENV ANSIBLE_USER=ansible DEPLOY_GROUP=deployer
-ENV SUDO_GROUP={{'sudo' if 'debian' in item.image else 'wheel' }}
-# {% if item.registry is defined %}
-# FROM {{ item.registry.url }}/{{ item.image }}
-# {% else %}
-# FROM {{ item.image }}
-# {% endif %}
+{% if item.registry is defined %}
+FROM {{ item.registry.url }}/{{ item.image }}
+{% else %}
+FROM {{ item.image }}
+{% endif %}
 
-# {% if item.env is defined %}
-# {% for var, value in item.env.items() %}
-# {% if value %}
-# ENV {{ var }} {{ value }}
-# {% endif %}
-# {% endfor %}
-# {% endif %}
+{% if item.env is defined %}
+{% for var, value in item.env.items() %}
+{% if value %}
+ENV {{ var }} {{ value }}
+{% endif %}
+{% endfor %}
+{% endif %}
 
+ENV LC_ALL=C TZ=UTC TERM=xterm-256color
 
+RUN if [ $(command -v dnf) ]; then \
+        cd /etc/yum.repos.d/ \
+        && sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* \
+        && sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-* \
+        && dnf makecache \
+        && dnf --assumeyes upgrade \
+        && dnf --assumeyes install python3 sudo python3-devel rsyslog python*-dnf bash iproute && dnf clean all; \
+    elif [ $(command -v dnf) ]; then \
+      dnf makecache \
+      && dnf --assumeyes install /usr/bin/python3 /usr/bin/python3-config /usr/bin/dnf-3 findutils dbus systemd sudo bash iproute \
+      && dnf clean all \
+      && rm -rf /usr/share/doc/* /usr/share/man/* /tmp/* /var/tmp/*; \
+    elif [ $(command -v yum) ]; then \
+      sed -i 's/^\(tsflags=*\)/# \1/g' /etc/yum.conf \
+      && yum makecache fast \
+      && yum upgrade -y \
+      && yum install -y /usr/bin/python /usr/bin/python2-config dbus systemd rsyslog sudo yum-plugin-ovl bash iproute \
+      && sed -i 's/plugins=0/plugins=1/g' /etc/yum.conf \
+      && yum clean all \
+      && rm -rf /usr/share/doc/* /usr/share/man/* /tmp/* /var/tmp/*; \
+    fi
 
-# RUN if [ $(command -v apt-get) ]; then apt-get update && apt-get upgrade -y && apt-get install -y apt-transport-https gnupg2 python3-minimal python3-apt man systemd systemd-sysv rsyslog sudo bash ca-certificates iproute2 && apt-get clean; \
-#     elif [ $(command -v dnf) ]; then dnf makecache && dnf --assumeyes upgrade && dnf --assumeyes install python3 sudo python3-devel python*-dnf bash iproute && dnf clean all; \
-#     elif [ $(command -v yum) ]; then sed -i 's/^\(tsflags=*\)/# \1/g' /etc/yum.conf && yum makecache fast && yum upgrade -y && yum makecache fast && yum install -y sudo python3 systemd rsyslog man yum-plugin-ovl bash iproute && sed -i 's/plugins=0/plugins=1/g' /etc/yum.conf && yum clean all; fi
+# Don't start any optional services except for the few we need.
+# Ignore any errors since some directories could not exists on some distributions
+RUN find /etc/systemd/system \
+      /lib/systemd/system \
+      /usr/lib/systemd/system \
+      -path '*.wants/*' \
+      -not -name '*dbus*' \
+      -not -name '*journald*' \
+      -not -name '*systemd-tmpfiles*' \
+      -not -name '*systemd-user-sessions*' \
+      -exec rm \{} \; ; >/dev/null 2>&1
 
 RUN set -xe \
   && groupadd -r ${ANSIBLE_USER} \
@@ -29,18 +57,18 @@ RUN set -xe \
   && usermod -aG ${DEPLOY_GROUP} ${ANSIBLE_USER} \
   && echo "%${DEPLOY_GROUP} ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/ansible
 
-# RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
-#     systemd-tmpfiles-setup.service ] || rm -f $i; done); \
-#     rm -rf /lib/systemd/system/multi-user.target.wants/*;\
-#     rm -rf /etc/systemd/system/*.wants/*;\
-#     rm -rf /lib/systemd/system/local-fs.target.wants/*; \
-#     rm -rf /lib/systemd/system/sockets.target.wants/*udev*; \
-#     rm -rf /lib/systemd/system/sockets.target.wants/*initctl*; \
-#     rm -rf /lib/systemd/system/basic.target.wants/*;\
-#     rm -rf /lib/systemd/system/anaconda.target.wants/*;
-    # systemctl enable dbus.socket; \
-    # systemctl enable dbus.service; \
-    # systemctl enable rsyslog.service
+RUN (cd /lib/systemd/system/sysinit.target.wants/; for i in *; do [ $i == \
+    systemd-tmpfiles-setup.service ] || rm -f $i; done); \
+    rm -rf /lib/systemd/system/multi-user.target.wants/*;\
+    rm -rf /etc/systemd/system/*.wants/*;\
+    rm -rf /lib/systemd/system/local-fs.target.wants/*; \
+    rm -rf /lib/systemd/system/sockets.target.wants/*udev*; \
+    rm -rf /lib/systemd/system/sockets.target.wants/*initctl*; \
+    rm -rf /lib/systemd/system/basic.target.wants/*;\
+    rm -rf /lib/systemd/system/anaconda.target.wants/*; \
+    systemctl enable dbus.socket; \
+    systemctl enable dbus.service; \
+    systemctl enable rsyslog.service
 
 VOLUME [ "/sys/fs/cgroup" ]
 CMD ["{{ item.command | default('/usr/sbin/init') }}"]

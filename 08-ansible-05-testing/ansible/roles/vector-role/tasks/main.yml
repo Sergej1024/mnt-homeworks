@@ -27,7 +27,7 @@
   become: true
   ansible.builtin.template:
     src: vector.service.j2
-    dest: /usr/lib/systemd/system/vector.service
+    dest: etc/systemd/system/vector.service #/usr/lib/systemd/system/vector.service
     mode: "0644"
     owner: "{{ ansible_user_id }}"
     group: "{{ ansible_user_gid }}"

@@ -112,40 +112,22 @@ user@home 08:58:22 ~/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles
 3. Добавьте несколько разных дистрибутивов (centos:8, ubuntu:latest) для инстансов и протестируйте роль, исправьте найденные ошибки, если они есть.
 
 ```shell
-sergej@fedora:~/GIT_SORE/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role [±|MNT-13 → origin U:1 ✗|] $ molecule test --driver-name docker
-INFO     default scenario test matrix: dependency, lint, cleanup, destroy, syntax, create, prepare, converge, idempotence, side_effect, verify, cleanup, destroy
+user@home 04:49:57 ~/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role |MNT-13 → origin U:5 ✗| →  molecule converge
+INFO     default scenario test matrix: dependency, create, prepare, converge
 INFO     Performing prerun with role_name_check=0...
-INFO     Set ANSIBLE_LIBRARY=/home/sergej/.cache/ansible-compat/f5bcd7/modules:/home/sergej/.ansible/plugins/modules:/usr/share/ansible/plugins/modules
-INFO     Set ANSIBLE_COLLECTIONS_PATH=/home/sergej/.cache/ansible-compat/f5bcd7/collections:/home/sergej/.ansible/collections:/usr/share/ansible/collections
-INFO     Set ANSIBLE_ROLES_PATH=/home/sergej/.cache/ansible-compat/f5bcd7/roles:/home/sergej/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles
-INFO     Using /home/sergej/.cache/ansible-compat/f5bcd7/roles/my_namespace.my_role symlink to current repository in order to enable Ansible to find the role using its expected full name.
+INFO     Set ANSIBLE_LIBRARY=/home/user/.cache/ansible-compat/f5bcd7/modules:/home/user/.ansible/plugins/modules:/usr/share/ansible/plugins/modules
+INFO     Set ANSIBLE_COLLECTIONS_PATH=/home/user/.cache/ansible-compat/f5bcd7/collections:/home/user/.ansible/collections:/usr/share/ansible/collections
+INFO     Set ANSIBLE_ROLES_PATH=/home/user/.cache/ansible-compat/f5bcd7/roles:/home/user/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles
+INFO     Using /home/user/.cache/ansible-compat/f5bcd7/roles/my_namespace.my_role symlink to current repository in order to enable Ansible to find the role using its expected full name.
+INFO     Inventory /home/user/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/../resources/inventory/hosts.yml linked to /home/user/.cache/molecule/vector-role/default/inventory/hosts
+INFO     Inventory /home/user/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/../resources/inventory/group_vars/ linked to /home/user/.cache/molecule/vector-role/default/inventory/group_vars
 INFO     Running default > dependency
 WARNING  Skipping, missing the requirements file.
 WARNING  Skipping, missing the requirements file.
-INFO     Running default > lint
-INFO     Lint is disabled.
-INFO     Running default > cleanup
-WARNING  Skipping, cleanup playbook not configured.
-INFO     Running default > destroy
-INFO     Sanity checks: 'docker'
-
-PLAY [Destroy] *****************************************************************
-
-TASK [Destroy molecule instance(s)] ********************************************
-changed: [localhost] => (item=centos7)
-
-TASK [Wait for instance(s) deletion to complete] *******************************
-ok: [localhost] => (item=centos7)
-
-TASK [Delete docker networks(s)] ***********************************************
-
-PLAY RECAP *********************************************************************
-localhost                  : ok=2    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
-
-INFO     Running default > syntax
-
-playbook: /home/sergej/GIT_SORE/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/converge.yml
+INFO     Inventory /home/user/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/../resources/inventory/hosts.yml linked to /home/user/.cache/molecule/vector-role/default/inventory/hosts
+INFO     Inventory /home/user/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/../resources/inventory/group_vars/ linked to /home/user/.cache/molecule/vector-role/default/inventory/group_vars
 INFO     Running default > create
+INFO     Sanity checks: 'docker'
 
 PLAY [Create] ******************************************************************
 
@@ -154,92 +136,125 @@ skipping: [localhost] => (item=None)
 skipping: [localhost]
 
 TASK [Check presence of custom Dockerfiles] ************************************
-ok: [localhost] => (item={'command': '/sbin/init', 'image': 'docker.io/pycontribs/centos:7', 'name': 'centos7', 'pre_build_image': True, 'privileged': True})
+ok: [localhost] => (item={'command': '', 'dockerfile': '../resources/Dockerfile.j2', 'env': {'ANSIBLE_USER': 'ansible', 'DEPLOY_GROUP': 'deployer', 'SUDO_GROUP': 'wheel', 'container': 'docker'}, 'image': 'geerlingguy/docker-centos8-ansible:latest', 'name': 'centos8', 'pre_build_image': True, 'privileged': True})
 
 TASK [Create Dockerfiles from image names] *************************************
-skipping: [localhost] => (item={'command': '/sbin/init', 'image': 'docker.io/pycontribs/centos:7', 'name': 'centos7', 'pre_build_image': True, 'privileged': True})
+skipping: [localhost] => (item={'command': '', 'dockerfile': '../resources/Dockerfile.j2', 'env': {'ANSIBLE_USER': 'ansible', 'DEPLOY_GROUP': 'deployer', 'SUDO_GROUP': 'wheel', 'container': 'docker'}, 'image': 'geerlingguy/docker-centos8-ansible:latest', 'name': 'centos8', 'pre_build_image': True, 'privileged': True})
 
 TASK [Discover local Docker images] ********************************************
-ok: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'item': {'command': '/sbin/init', 'image': 'docker.io/pycontribs/centos:7', 'name': 'centos7', 'pre_build_image': True, 'privileged': True}, 'ansible_loop_var': 'item', 'i': 0, 'ansible_index_var': 'i'})
+ok: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'item': {'command': '', 'dockerfile': '../resources/Dockerfile.j2', 'env': {'ANSIBLE_USER': 'ansible', 'DEPLOY_GROUP': 'deployer', 'SUDO_GROUP': 'wheel', 'container': 'docker'}, 'image': 'geerlingguy/docker-centos8-ansible:latest', 'name': 'centos8', 'pre_build_image': True, 'privileged': True}, 'ansible_loop_var': 'item', 'i': 0, 'ansible_index_var': 'i'})
 
 TASK [Build an Ansible compatible image (new)] *********************************
-skipping: [localhost] => (item=molecule_local/docker.io/pycontribs/centos:7)
+skipping: [localhost] => (item=molecule_local/geerlingguy/docker-centos8-ansible:latest)
 
 TASK [Create docker network(s)] ************************************************
 
 TASK [Determine the CMD directives] ********************************************
-ok: [localhost] => (item={'command': '/sbin/init', 'image': 'docker.io/pycontribs/centos:7', 'name': 'centos7', 'pre_build_image': True, 'privileged': True})
+ok: [localhost] => (item={'command': '', 'dockerfile': '../resources/Dockerfile.j2', 'env': {'ANSIBLE_USER': 'ansible', 'DEPLOY_GROUP': 'deployer', 'SUDO_GROUP': 'wheel', 'container': 'docker'}, 'image': 'geerlingguy/docker-centos8-ansible:latest', 'name': 'centos8', 'pre_build_image': True, 'privileged': True})
 
 TASK [Create molecule instance(s)] *********************************************
-changed: [localhost] => (item=centos7)
+changed: [localhost] => (item=centos8)
 
 TASK [Wait for instance(s) creation to complete] *******************************
 FAILED - RETRYING: [localhost]: Wait for instance(s) creation to complete (300 retries left).
-changed: [localhost] => (item={'failed': 0, 'started': 1, 'finished': 0, 'ansible_job_id': '172678109756.2319787', 'results_file': '/home/sergej/.ansible_async/172678109756.2319787', 'changed': True, 'item': {'command': '/sbin/init', 'image': 'docker.io/pycontribs/centos:7', 'name': 'centos7', 'pre_build_image': True, 'privileged': True}, 'ansible_loop_var': 'item'})
+changed: [localhost] => (item={'failed': 0, 'started': 1, 'finished': 0, 'ansible_job_id': '742320820463.145955', 'results_file': '/home/user/.ansible_async/742320820463.145955', 'changed': True, 'item': {'command': '', 'dockerfile': '../resources/Dockerfile.j2', 'env': {'ANSIBLE_USER': 'ansible', 'DEPLOY_GROUP': 'deployer', 'SUDO_GROUP': 'wheel', 'container': 'docker'}, 'image': 'geerlingguy/docker-centos8-ansible:latest', 'name': 'centos8', 'pre_build_image': True, 'privileged': True}, 'ansible_loop_var': 'item'})
 
 PLAY RECAP *********************************************************************
 localhost                  : ok=5    changed=2    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0
 
+INFO     Inventory /home/user/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/../resources/inventory/hosts.yml linked to /home/user/.cache/molecule/vector-role/default/inventory/hosts
+INFO     Inventory /home/user/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/../resources/inventory/group_vars/ linked to /home/user/.cache/molecule/vector-role/default/inventory/group_vars
 INFO     Running default > prepare
 WARNING  Skipping, prepare playbook not configured.
+INFO     Inventory /home/user/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/../resources/inventory/hosts.yml linked to /home/user/.cache/molecule/vector-role/default/inventory/hosts
+INFO     Inventory /home/user/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/../resources/inventory/group_vars/ linked to /home/user/.cache/molecule/vector-role/default/inventory/group_vars
 INFO     Running default > converge
 
 PLAY [Converge] ****************************************************************
 
 TASK [Gathering Facts] *********************************************************
-[WARNING]: Timeout exceeded when getting mount info for /etc/hosts
-[WARNING]: Timeout exceeded when getting mount info for /etc/hostname
-[WARNING]: Timeout exceeded when getting mount info for /etc/resolv.conf
-ok: [centos7]
+ok: [centos8]
 
 TASK [Include vector-role] *****************************************************
 
 TASK [vector-role : Download Vector distrib] ***********************************
-changed: [centos7]
+changed: [centos8]
 
 TASK [vector-role : Install Vector packages] ***********************************
-changed: [centos7]
+changed: [centos8]
 
 TASK [vector-role : Copy Vector config] ****************************************
-changed: [centos7]
+changed: [centos8]
 
 TASK [vector-role : Vector change systemd unit] ********************************
-changed: [centos7]
+changed: [centos8]
 
 RUNNING HANDLER [vector-role : Start Vector service] ***************************
-fatal: [centos7]: FAILED! => {"changed": false, "cmd": "/bin/systemctl", "msg": "Failed to get D-Bus connection: No such file or directory", "rc": 1, "stderr": "Failed to get D-Bus connection: No such file or directory\n", "stderr_lines": ["Failed to get D-Bus connection: No such file or directory"], "stdout": "", "stdout_lines": []}
+fatal: [centos8]: FAILED! => {"changed": false, "msg": "Service is in unknown state", "status": {}}
 
 NO MORE HOSTS LEFT *************************************************************
 
 PLAY RECAP *********************************************************************
-centos7                    : ok=5    changed=4    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
+centos8                    : ok=5    changed=4    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0
 
-WARNING  Retrying execution failure 2 of: ansible-playbook --inventory /home/sergej/.cache/molecule/vector-role/default/inventory --skip-tags molecule-notest,notest /home/sergej/GIT_SORE/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/converge.yml
-CRITICAL Ansible return code was 2, command was: ['ansible-playbook', '--inventory', '/home/sergej/.cache/molecule/vector-role/default/inventory', '--skip-tags', 'molecule-notest,notest', '/home/sergej/GIT_SORE/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/converge.yml']
-WARNING  An error occurred during the test sequence action: 'converge'. Cleaning up.
-INFO     Running default > cleanup
-WARNING  Skipping, cleanup playbook not configured.
-INFO     Running default > destroy
-
-PLAY [Destroy] *****************************************************************
-
-TASK [Destroy molecule instance(s)] ********************************************
-changed: [localhost] => (item=centos7)
-
-TASK [Wait for instance(s) deletion to complete] *******************************
-FAILED - RETRYING: [localhost]: Wait for instance(s) deletion to complete (300 retries left).
-changed: [localhost] => (item=centos7)
-
-TASK [Delete docker networks(s)] ***********************************************
-
-PLAY RECAP *********************************************************************
-localhost                  : ok=2    changed=2    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
-
-INFO     Pruning extra files from scenario ephemeral directory
-sergej@fedora:~/GIT_SORE/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role [±|MNT-13 → origin U:2 ✗|] $ 
+WARNING  Retrying execution failure 2 of: ansible-playbook --inventory /home/user/.cache/molecule/vector-role/default/inventory --skip-tags molecule-notest,notest /home/user/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/converge.yml
+CRITICAL Ansible return code was 2, command was: ['ansible-playbook', '--inventory', '/home/user/.cache/molecule/vector-role/default/inventory', '--skip-tags', 'molecule-notest,notest', '/home/user/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/converge.yml']
+user@home 04:51:43 ~/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role |MNT-13 → origin U:5 ✗| → 
 ```
 
 4. Добавьте несколько assert'ов в verify.yml файл для  проверки работоспособности vector-role (проверка, что конфиг валидный, проверка успешности запуска, etc). Запустите тестирование роли повторно и проверьте, что оно прошло успешно.
+
+```shell
+user@home 04:51:43 ~/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role |MNT-13 → origin U:5 ✗| →  molecule converge
+INFO     default scenario test matrix: dependency, create, prepare, converge
+INFO     Performing prerun with role_name_check=0...
+INFO     Set ANSIBLE_LIBRARY=/home/user/.cache/ansible-compat/f5bcd7/modules:/home/user/.ansible/plugins/modules:/usr/share/ansible/plugins/modules
+INFO     Set ANSIBLE_COLLECTIONS_PATH=/home/user/.cache/ansible-compat/f5bcd7/collections:/home/user/.ansible/collections:/usr/share/ansible/collections
+INFO     Set ANSIBLE_ROLES_PATH=/home/user/.cache/ansible-compat/f5bcd7/roles:/home/user/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles
+INFO     Using /home/user/.cache/ansible-compat/f5bcd7/roles/my_namespace.my_role symlink to current repository in order to enable Ansible to find the role using its expected full name.
+INFO     Inventory /home/user/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/../resources/inventory/hosts.yml linked to /home/user/.cache/molecule/vector-role/default/inventory/hosts
+INFO     Inventory /home/user/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/../resources/inventory/group_vars/ linked to /home/user/.cache/molecule/vector-role/default/inventory/group_vars
+INFO     Running default > dependency
+WARNING  Skipping, missing the requirements file.
+WARNING  Skipping, missing the requirements file.
+INFO     Inventory /home/user/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/../resources/inventory/hosts.yml linked to /home/user/.cache/molecule/vector-role/default/inventory/hosts
+INFO     Inventory /home/user/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/../resources/inventory/group_vars/ linked to /home/user/.cache/molecule/vector-role/default/inventory/group_vars
+INFO     Running default > create
+WARNING  Skipping, instances already created.
+INFO     Inventory /home/user/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/../resources/inventory/hosts.yml linked to /home/user/.cache/molecule/vector-role/default/inventory/hosts
+INFO     Inventory /home/user/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/../resources/inventory/group_vars/ linked to /home/user/.cache/molecule/vector-role/default/inventory/group_vars
+INFO     Running default > prepare
+WARNING  Skipping, prepare playbook not configured.
+INFO     Inventory /home/user/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/../resources/inventory/hosts.yml linked to /home/user/.cache/molecule/vector-role/default/inventory/hosts
+INFO     Inventory /home/user/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role/molecule/default/../resources/inventory/group_vars/ linked to /home/user/.cache/molecule/vector-role/default/inventory/group_vars
+INFO     Running default > converge
+INFO     Sanity checks: 'docker'
+
+PLAY [Converge] ****************************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [centos8]
+
+TASK [Include vector-role] *****************************************************
+
+TASK [vector-role : Download Vector distrib] ***********************************
+ok: [centos8]
+
+TASK [vector-role : Install Vector packages] ***********************************
+ok: [centos8]
+
+TASK [vector-role : Copy Vector config] ****************************************
+ok: [centos8]
+
+TASK [vector-role : Vector change systemd unit] ********************************
+ok: [centos8]
+
+PLAY RECAP *********************************************************************
+centos8                    : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+user@home 08:50:43 ~/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles/vector-role |MNT-13 → origin U:5 ✗| →
+```
+
 5. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
 
 ### Tox
