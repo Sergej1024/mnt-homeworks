@@ -253,7 +253,7 @@ user@home 08:50:43 ~/git_store/mnt-homeworks/08-ansible-05-testing/ansible/roles
 
 5. Добавьте новый тег на коммит с рабочим сценарием в соответствии с семантическим версионированием.
 
-
+[Vector-role с молекулой](https://github.com/Sergej1024/Vector-role/tree/1.0.1)
 
 ### Tox
 
