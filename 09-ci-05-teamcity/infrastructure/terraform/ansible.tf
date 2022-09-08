@@ -10,7 +10,7 @@ resource "null_resource" "wait" {
 
 resource "null_resource" "cluster" {
   provisioner "local-exec" {
-    command = "ANSIBLE_FORCE_COLOR=1 ansible-playbook -i ../inventory/cicd/prod.yml ../site.yml"
+    command = "ANSIBLE_FORCE_COLOR=1 ansible-playbook -i ../inventory/cicd/hosts.yml ../site.yml"
   }
 
   depends_on = [

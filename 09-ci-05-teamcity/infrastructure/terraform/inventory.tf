@@ -15,7 +15,7 @@ resource "local_file" "inventory" {
         ansible_connection_type: paramiko
         ansible_user: centos
   DOC
-  filename = "../infrastructure/inventory/cicd/hosts.yml"
+  filename = "../inventory/cicd/hosts.yml"
 }  
 # resource "local_file" "all_vars" {
 #   content = <<-DOC
