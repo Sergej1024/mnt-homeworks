@@ -15,7 +15,7 @@
 
 <details><summary>Результат выполнения</summary>
 
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-05-teamcity/image/1.1.png)
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-05-teamcity/image/1.1.jpg)
 
 </details>
 
@@ -23,8 +23,8 @@
 
 <details><summary>Результат выполнения</summary>
 
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-05-teamcity/image/2.1.png)
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-05-teamcity/image/2.2.png)
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-05-teamcity/image/2.1.jpg)
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-05-teamcity/image/2.2.jpg)
 
 
 </details>
@@ -34,9 +34,9 @@
 
 <details><summary>Результат выполнения</summary>
 
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-05-teamcity/image/4.1.png)
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-05-teamcity/image/4.2.png)
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-05-teamcity/image/4.3.png)
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-05-teamcity/image/4.1.jpg)
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-05-teamcity/image/4.2.jpg)
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-05-teamcity/image/4.3.jpg)
 
 </details>
 
@@ -62,7 +62,7 @@
 
 <details><summary>Результат выполнения</summary>
 
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-05-teamcity/image/7.1.png)
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-05-teamcity/image/7.1.jpg)
 ![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-05-teamcity/image/7.2.png)
 
 </details>
