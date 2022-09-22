@@ -106,6 +106,9 @@ services:
 
 Создайте Dashboard и в ней создайте следующие Panels:
 - Утилизация CPU для nodeexporter (в процентах, 100-idle)
+```shell
+avg by(instance) (rate(node_cpu_seconds_total{instance="node-exporter:9100", mode="idle"}[$__rate_interval]))*100
+```
 - CPULA 1/5/15
 - Количество свободной оперативной памяти
 - Количество места на файловой системе
