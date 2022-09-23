@@ -69,7 +69,7 @@ sergej@fedora:~/GIT_SORE/sandbox [±|master U:1 ✗|] $ curl http://localhost:88
 <!DOCTYPE html><html><head><link rel="stylesheet" href="/index.c708214f.css"><meta http-equiv="Content-type" content="text/html; charset=utf-8"><title>Chronograf</title><link rel="icon shortcut" href="/favicon.70d63073.ico"></head><body> <div id="react-root" data-basepath=""></div> <script type="module" src="/index.e81b88ee.js"></script><script src="/index.a6955a67.js" nomodule="" defer></script> </body></html>sergej@fedora:~/GIT_SORE/sandbox [±|master U:1 ✗|] $ curl http://localhost:9092/kapacitor/v1/ping
 sergej@fedora:~/GIT_SORE/sandbox [±|master U:1 ✗|] $ 
 ```
-[Cкриншот веб-интерфейса ПО chronograf](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-02-systems/imag/3.1.png)
+![Cкриншот веб-интерфейса ПО chronograf](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-02-systems/imag/3.1.png)
 
 4. Перейдите в веб-интерфейс Chronograf (`http://localhost:8888`) и откройте вкладку `Data explorer`.
 
