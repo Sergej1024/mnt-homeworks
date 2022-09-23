@@ -88,6 +88,8 @@ services:
 
 В решении приведите скриншоты тестовых событий из каналов нотификаций.
 
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-03-grafana/img/3.png)
+
 ## Обязательные задания
 
 ### Задание 1
