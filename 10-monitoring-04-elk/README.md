@@ -40,9 +40,175 @@ Filebeat следует сконфигурировать для отправки
 
 Результатом выполнения данного задания должны быть:
 - скриншот `docker ps` через 5 минут после старта всех контейнеров (их должно быть 5)
+
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-04-elk/img/1.2.png)
+
 - скриншот интерфейса kibana
+
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-04-elk/img/1.1.png)
+
 - docker-compose манифест (если вы не использовали директорию help)
+
+<details><summary>docker-compose.yml</summary>
+
+```yml
+version: '3.0'
+services:
+
+  es-hot:
+    image: elasticsearch:7.17.2
+    container_name: es-hot
+    environment:
+      - node.name=es-hot
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es-warm
+      - cluster.initial_master_nodes=es-hot,es-warm
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - hot_data:/usr/share/elasticsearch/data:Z
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    ports:
+      - 9200:9200
+    networks:
+      - elk-net
+    depends_on:
+      - es-warm
+
+  es-warm:
+    image: elasticsearch:7.17.2
+    container_name: es-warm
+    environment:
+      - node.name=es-warm
+      - cluster.name=es-docker-cluster
+      - discovery.seed_hosts=es-hot
+      - cluster.initial_master_nodes=es-hot,es-warm
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    volumes:
+      - warm_data:/usr/share/elasticsearch/data:Z
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    networks:
+      - elk-net
+
+  kibana:
+    image: kibana:7.17.2
+    container_name: kibana
+    ports:
+      - 5601:5601
+    volumes:
+       - ./configs/kibana.yml:/usr/share/kibana/config/kibana.yml
+    networks:
+      - elk-net
+    depends_on:
+      - es-hot
+      - es-warm
+
+  logstash:
+    image: logstash:7.17.2
+    container_name: logstash
+    volumes:
+      - ./configs/logstash.conf:/etc/logstash/conf.d/logstash.conf:Z
+      - ./configs/logstash.yml:/opt/logstash/config/logstash.yml:Z
+    ports:
+      - 5044:5044
+      - 5046:5046
+    networks:
+      - elk-net
+    depends_on:
+      - es-hot
+      - es-warm
+
+  filebeat:
+    image: elastic/filebeat:7.2.0
+    container_name: filebeat
+    privileged: true
+    user: root
+    volumes:
+      - ./configs/filebeat.yml:/usr/share/filebeat/filebeat.yml:Z
+      - /var/lib/docker:/var/lib/docker:Z
+      - /var/run/docker.sock:/var/run/docker.sock:Z
+    command:
+      - "-e"
+      - "--strict.perms=false"    
+    depends_on:
+      - logstash
+
+  some_application:
+    image: library/python:3.9-alpine
+    container_name: some_app
+    volumes:
+      - ./pinger/run.py:/opt/run.py:Z
+    entrypoint: python3 /opt/run.py
+
+volumes:
+  hot_data:
+    driver: local
+  warm_data:
+    driver: local
+
+networks:
+  elk-net:
+    driver: bridge
+```
+</details>
+
 - ваши yml конфигурации для стека (если вы не использовали директорию help)
+
+<details><summary>kibana.yml</summary>
+
+```yml
+server.name: kibana
+server.host: "0.0.0.0"
+server.shutdownTimeout: "5s"
+elasticsearch.hosts: ["http://es-hot:9200","http://es-warm:/9200"]
+monitoring.ui.container.elasticsearch.enabled: true
+xpack.security.enabled: 'false'
+```
+</details>
+
+<details><summary>filebeat.yml</summary>
+
+```yml
+filebeat.inputs:
+  - type: container
+    paths:
+      - '/var/lib/docker/containers/*/*.log'
+    tags: ["docker-logs"]
+
+processors:
+  - add_docker_metadata:
+      host: "unix:///var/run/docker.sock"
+
+  - decode_json_fields:
+      fields: ["message"]
+      target: "json"
+      overwrite_keys: true
+
+output.logstash:
+  hosts: 'logstash:5044'
+
+logging.level: info
+logging.to_files: true
+logging.files:
+  path: /var/log/filebeat
+  name: filebeat
+  keepfiles: 3
+  permissions: 0644
+```
+</details>
 
 ## Задание 2
 
@@ -56,12 +222,5 @@ Filebeat следует сконфигурировать для отправки
 Данные логи должны порождать индекс logstash-* в elasticsearch. Если данного индекса нет - воспользуйтесь советами 
 и источниками из раздела "Дополнительные ссылки" данного ДЗ.
  
----
-
-### Как оформить ДЗ?
-
-Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
-
----
-
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-04-elk/img/2.1.png)
  
