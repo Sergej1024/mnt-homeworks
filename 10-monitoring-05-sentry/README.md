@@ -17,6 +17,8 @@ Free cloud account имеет следующие ограничения:
 
 Для выполнения задания - пришлите скриншот меню Projects.
 
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-05-sentry/img/1.1.png)
+
 ## Задание 2
 
 Создайте python проект и нажмите `Generate sample event` для генерации тестового события.
@@ -27,6 +29,12 @@ Free cloud account имеет следующие ограничения:
 
 Для выполнения задание предоставьте скриншот `Stack trace` из этого события и список событий проекта, 
 после нажатия `Resolved`.
+
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-05-sentry/img/2.1.png)
+
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-05-sentry/img/2.2.png)
+
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-05-sentry/img/2.3.png)
 
 ## Задание 3
 
@@ -48,18 +56,8 @@ Free cloud account имеет следующие ограничения:
 Дополнительно поэкспериментируйте с правилами алёртинга. 
 Выбирайте разные условия отправки и создавайте sample events. 
 
-## Задание повышенной сложности
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-05-sentry/img/3.1.png)
 
-Создайте проект на ЯП python или GO (небольшой, буквально 10-20 строк), подключите к нему sentry SDK и отправьте несколько тестовых событий.
-Поэкспериментируйте с различными передаваемыми параметрами, но помните об ограничениях free учетной записи cloud Sentry.
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-05-sentry/img/3.2.png)
 
-Для выполнения задания пришлите скриншот меню issues вашего проекта и 
-пример кода подключения sentry sdk/отсылки событий.
-
----
-
-### Как оформить ДЗ?
-
-Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
-
----
+![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-05-sentry/img/3.3.png)
