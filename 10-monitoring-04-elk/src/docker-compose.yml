@@ -67,8 +67,7 @@ services:
     container_name: logstash
     volumes:
       - ./configs/pipeline:/usr/share/logstash/pipeline:ro
-      # - ./configs/logstash.conf:/etc/logstash/conf.d/logstash.conf:Z
-      # - ./configs/logstash.yml:/opt/logstash/config/logstash.yml:Z
+      - ./configs/logstash.yml:/opt/logstash/config/logstash.yml:Z
     ports:
       - 5044:5044
       - 5046:5046
@@ -89,7 +88,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:Z
     command:
       - "-e"
-      - "--strict.perms=false"    
+      - "--strict.perms=false"
+    networks:
+      - elk-net
     depends_on:
       - logstash
 

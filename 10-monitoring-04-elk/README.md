@@ -120,7 +120,7 @@ services:
     image: logstash:7.17.2
     container_name: logstash
     volumes:
-      - ./configs/logstash.conf:/etc/logstash/conf.d/logstash.conf:Z
+      - ./configs/pipeline:/usr/share/logstash/pipeline:ro
       - ./configs/logstash.yml:/opt/logstash/config/logstash.yml:Z
     ports:
       - 5044:5044
@@ -132,7 +132,7 @@ services:
       - es-warm
 
   filebeat:
-    image: elastic/filebeat:7.2.0
+    image: elastic/filebeat:7.17.2
     container_name: filebeat
     privileged: true
     user: root
@@ -142,7 +142,9 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:Z
     command:
       - "-e"
-      - "--strict.perms=false"    
+      - "--strict.perms=false"
+    networks:
+      - elk-net
     depends_on:
       - logstash
 
@@ -162,6 +164,7 @@ volumes:
 networks:
   elk-net:
     driver: bridge
+
 ```
 </details>
 
@@ -224,3 +227,4 @@ logging.files:
  
 ![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-04-elk/img/2.1.png)
  
+ ![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-04-elk/img/2.2.png)
