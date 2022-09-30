@@ -11,8 +11,8 @@ terraform {
     bucket     = "backet-rse"
     region     = "ru-central1"
     key        = ".terraform/terraform.tfstate"
-    var.access_key = "YCAJEwQdANa_nagUkLZz6HmX8"
-    var.secret_key = "YCO9N6WhuVCz0mCzRQRInrLR0IYq9gj4Cl1GdSA1"
+    access_key = var.access_key
+    secret_key = var.secret_key
 
     skip_region_validation      = true
     skip_credentials_validation = true
