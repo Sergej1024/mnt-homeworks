@@ -72,8 +72,11 @@ resource "yandex_compute_instance" "ci-tutorial-gitlab" {
   }
 
   metadata = {
-    user-data = "${file("/home/maal/exchange/terraform/meta.txt")}"
-   }
+    ssh-keys = "centos:${file("~/.ssh/id_rsa.pub")}"
+  }
+  # metadata = {
+  #   user-data = "${file("/home/maal/exchange/terraform/meta.txt")}"
+  #  }
   allow_stopping_for_update = "true"
 }
 
@@ -106,6 +109,9 @@ resource "yandex_compute_instance" "gitlab-runner" {
     nat = true
   }
   metadata = {
-    user-data = "${file("/home/maal/exchange/terraform/meta.txt")}"
+    ssh-keys = "centos:${file("~/.ssh/id_rsa.pub")}"
   }
+  # metadata = {
+  #   user-data = "${file("/home/maal/exchange/terraform/meta.txt")}"
+  # }
 }
