@@ -69,8 +69,8 @@
 Разработчики выполнили новый Issue, необходимо проверить валидность изменений:
 1. Поднять докер-контейнер с образом `python-api:latest` и проверить возврат метода на корректность
 ```json
-   $ curl localhost:5290/rest/api/get_info
-   {'version': 3, 'method': 'GET', 'message': 'Running'}
+$ curl localhost:5290/rest/api/get_info
+{'version': 3, 'method': 'GET', 'message': 'Running'}
 ```
 2. Закрыть Issue с комментарием об успешности прохождения, указав желаемый результат и фактически достигнутый
 
