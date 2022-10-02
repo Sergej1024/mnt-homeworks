@@ -1,7 +1,7 @@
 ---
 imagePullPolicy: IfNotPresent
-gitlabUrl: https://netology-devops13.gitlab.yandexcloud.net/
-runnerRegistrationToken: "GR1348941xTg9GwNzr4ZAtAPkJzuk"
+gitlabUrl: https://itcrafting.gitlab.yandexcloud.net/
+runnerRegistrationToken: "GR13489413AsZUSxDTqWHRGHjaxci"
 terminationGracePeriodSeconds: 3600
 concurrent: 10
 checkInterval: 30
