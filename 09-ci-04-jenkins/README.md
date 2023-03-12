@@ -9,8 +9,8 @@
 
 <details><summary>Результат выполнения</summary>
 
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-04-jenkins/image/start_jenkins.png)
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-04-jenkins/image/start_jenkins2.png)
+![](./image/start_jenkins.png)
+![](./image/start_jenkins2.png)
 
 </details>
 
@@ -36,9 +36,9 @@ and the repository exists.
 ```
 <details><summary>Результат выполнения</summary>
 
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-04-jenkins/image/jenkins.png)
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-04-jenkins/image/jenkins1.png)
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-04-jenkins/image/jenkins2.png)
+![](./image/jenkins.png)
+![](./image/jenkins1.png)
+![](./image/jenkins2.png)
 
 </details>
 
@@ -46,8 +46,8 @@ and the repository exists.
 
 <details><summary>Результат выполнения</summary>
 
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-04-jenkins/image/declarat1.png)
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-04-jenkins/image/declarat2.png)
+![](./image/declarat1.png)
+![](./image/declarat2.png)
 
 </details>
 
@@ -56,7 +56,7 @@ and the repository exists.
 
 <details><summary>Результат выполнения</summary>
 
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-04-jenkins/image/multibranch.png)
+![](./image/multibranch.png)
 
 </details>
 
@@ -64,7 +64,7 @@ and the repository exists.
 
 <details><summary>Результат выполнения</summary>
 
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-04-jenkins/image/scripted.png)
+![](./image/scripted.png)
 
 </details>
 
@@ -74,4 +74,4 @@ and the repository exists.
 
 [Jenkinsfile](https://github.com/Sergej1024/Vector-role/tree/main)
 
-[ScriptedJenkinsfile](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/09-ci-04-jenkins/src/ScriptedJenkinsfile)
+[ScriptedJenkinsfile](./src/ScriptedJenkinsfile)

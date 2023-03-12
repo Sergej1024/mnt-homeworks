@@ -69,7 +69,7 @@ sergej@fedora:~/GIT_SORE/sandbox [±|master U:1 ✗|] $ curl http://localhost:88
 <!DOCTYPE html><html><head><link rel="stylesheet" href="/index.c708214f.css"><meta http-equiv="Content-type" content="text/html; charset=utf-8"><title>Chronograf</title><link rel="icon shortcut" href="/favicon.70d63073.ico"></head><body> <div id="react-root" data-basepath=""></div> <script type="module" src="/index.e81b88ee.js"></script><script src="/index.a6955a67.js" nomodule="" defer></script> </body></html>sergej@fedora:~/GIT_SORE/sandbox [±|master U:1 ✗|] $ curl http://localhost:9092/kapacitor/v1/ping
 sergej@fedora:~/GIT_SORE/sandbox [±|master U:1 ✗|] $ 
 ```
-![Cкриншот веб-интерфейса ПО chronograf](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-02-systems/imag/3.1.png)
+![Cкриншот веб-интерфейса ПО chronograf](./imag/3.1.png)
 
 4. Перейдите в веб-интерфейс Chronograf (`http://localhost:8888`) и откройте вкладку `Data explorer`.
 
@@ -83,8 +83,8 @@ sergej@fedora:~/GIT_SORE/sandbox [±|master U:1 ✗|] $
 Для выполнения задания приведите скриншот с отображением метрик утилизации места на диске 
 (disk->host->telegraf_container_id) из веб-интерфейса.
 
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-02-systems/imag/4.1.png)
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-02-systems/imag/4.2.png)
+![](./imag/4.1.png)
+![](./imag/4.2.png)
 
 5. Изучите список [telegraf inputs](https://github.com/influxdata/telegraf/tree/master/plugins/inputs). 
 Добавьте в конфигурацию telegraf следующий плагин - [docker](https://github.com/influxdata/telegraf/tree/master/plugins/inputs/docker):
@@ -115,7 +115,7 @@ sergej@fedora:~/GIT_SORE/sandbox [±|master U:1 ✗|] $
 
 Факультативно можете изучить какие метрики собирает telegraf после выполнения данного задания.
 
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-02-systems/imag/5.1.png)
+![](./imag/5.1.png)
 
 ## Дополнительное задание (со звездочкой*) - необязательно к выполнению
 
@@ -131,4 +131,4 @@ sergej@fedora:~/GIT_SORE/sandbox [±|master U:1 ✗|] $
     
     ---
 
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-02-systems/imag/6.png)
+![](./imag/6.png)

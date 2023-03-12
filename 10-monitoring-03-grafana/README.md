@@ -2,15 +2,16 @@
 
 ## Задание повышенной сложности
 
-**В части задания 1** не используйте директорию [help](./help) для сборки проекта, самостоятельно разверните grafana, где в 
+**В части задания 1** не используйте директорию [help](./help) для сборки проекта, самостоятельно разверните grafana, где в
 роли источника данных будет выступать prometheus, а сборщиком данных node-exporter:
+
 - grafana
 - prometheus-server
 - prometheus node-exporter
 
 За дополнительными материалами, вы можете обратиться в официальную документацию grafana и prometheus.
 
-В решении к домашнему заданию приведите также все конфигурации/скрипты/манифесты, которые вы 
+В решении к домашнему заданию приведите также все конфигурации/скрипты/манифесты, которые вы
 использовали в процессе решения задания.
 
 ```yml
@@ -88,11 +89,12 @@ services:
 
 В решении приведите скриншоты тестовых событий из каналов нотификаций.
 
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-03-grafana/img/3.png)
+![](./img/3.png)
 
 ## Обязательные задания
 
 ### Задание 1
+
 Используя директорию [help](./help) внутри данного домашнего задания - запустите связку prometheus-grafana.
 
 Зайдите в веб-интерфейс графана, используя авторизационные данные, указанные в манифесте docker-compose.
@@ -101,54 +103,63 @@ services:
 
 Решение домашнего задания - скриншот веб-интерфейса grafana со списком подключенных Datasource.
 
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-03-grafana/img/1.1.png)
+![](./img/1.1.png)
 
 ## Задание 2
+
 Изучите самостоятельно ресурсы:
+
 - [promql-for-humans](https://timber.io/blog/promql-for-humans/#cpu-usage-by-instance)
 - [understanding prometheus cpu metrics](https://www.robustperception.io/understanding-machine-cpu-usage)
 
 Создайте Dashboard и в ней создайте следующие Panels:
+
 - Утилизация CPU для nodeexporter (в процентах, 100-idle)
+
 ```shell
 avg by(instance) (rate(node_cpu_seconds_total{instance="node-exporter:9100", mode="idle"}[$__rate_interval]))*100
 ```
 
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-03-grafana/img/2.1.png)
+![](./img/2.1.png)
 
 - CPULA 1/5/15
+
 ```shell
 avg by(instance) (rate(node_load1{instance="node-exporter:9100"}[$__rate_interval]))
 ```
 
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-03-grafana/img/2.2.png)
+![](./img/2.2.png)
 
 - Количество свободной оперативной памяти
+
 ```shell
 node_memory_MemFree_bytes{instance="node-exporter:9100"}
 ```
 
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-03-grafana/img/2.3.png)
+![](./img/2.3.png)
 
 - Количество места на файловой системе
+
 ```shell
 node_filesystem_avail_bytes{device="/dev/sda1"}
 ```
 
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-03-grafana/img/2.4.png)
+![](./img/2.4.png)
 
 Для решения данного ДЗ приведите promql запросы для выдачи этих метрик, а также скриншот получившейся Dashboard.
 
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-03-grafana/img/2.5.png)
+![](./img/2.5.png)
 
 ## Задание 3
+
 Создайте для каждой Dashboard подходящее правило alert (можно обратиться к первой лекции в блоке "Мониторинг").
 
 Для решения ДЗ - приведите скриншот вашей итоговой Dashboard.
 
-![](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-03-grafana/img/3.1.png)
+![](./img/3.1.png)
 
 ## Задание 4
+
 Сохраните ваш Dashboard.
 
 Для этого перейдите в настройки Dashboard, выберите в боковом меню "JSON MODEL".
@@ -157,7 +168,7 @@ node_filesystem_avail_bytes{device="/dev/sda1"}
 
 В решении задания - приведите листинг этого файла.
 
-[Dashboard](https://github.com/Sergej1024/mnt-homeworks/blob/MNT-13/10-monitoring-03-grafana/dashboard.json)
+[Dashboard](./dashboard.json)
 
 <details><summary>JSON MODEL</summary>
 ```json
